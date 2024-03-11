@@ -1,0 +1,166 @@
+pkg_info {
+  arch: "v1model"
+}
+tables {
+  preamble {
+    id: 37375156
+    name: "MyIngress.ipv4_lpm"
+    alias: "ipv4_lpm"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.ipv4.dstAddr"
+    bitwidth: 32
+    match_type: LPM
+  }
+  action_refs {
+    id: 28792405
+  }
+  action_refs {
+    id: 25652968
+  }
+  action_refs {
+    id: 21257015
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 42865892
+    name: "MyEgress.t_forward_int"
+    alias: "t_forward_int"
+  }
+  action_refs {
+    id: 25429363
+  }
+  action_refs {
+    id: 21257015
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 46580172
+    name: "MyEgress.int_trace"
+    alias: "int_trace"
+  }
+  action_refs {
+    id: 30066987
+  }
+  action_refs {
+    id: 21257015
+  }
+  size: 1024
+}
+actions {
+  preamble {
+    id: 21257015
+    name: "NoAction"
+    alias: "NoAction"
+    annotations: "@noWarn(\"unused\")"
+  }
+}
+actions {
+  preamble {
+    id: 25652968
+    name: "MyIngress.drop"
+    alias: "drop"
+  }
+}
+actions {
+  preamble {
+    id: 28792405
+    name: "MyIngress.ipv4_forward"
+    alias: "ipv4_forward"
+  }
+  params {
+    id: 1
+    name: "dstAddr"
+    bitwidth: 48
+  }
+  params {
+    id: 2
+    name: "port"
+    bitwidth: 9
+  }
+  params {
+    id: 3
+    name: "isEndHost"
+    bitwidth: 1
+  }
+}
+actions {
+  preamble {
+    id: 27930369
+    name: "MyEgress.add_int_header"
+    alias: "add_int_header"
+  }
+}
+actions {
+  preamble {
+    id: 30066987
+    name: "MyEgress.add_int_trace"
+    alias: "add_int_trace"
+  }
+  params {
+    id: 1
+    name: "swid"
+    bitwidth: 32
+  }
+}
+actions {
+  preamble {
+    id: 25429363
+    name: "MyEgress.forward_int"
+    alias: "forward_int"
+  }
+  params {
+    id: 1
+    name: "dstAddr"
+    bitwidth: 48
+  }
+  params {
+    id: 2
+    name: "ip_dstAddr"
+    bitwidth: 32
+  }
+}
+actions {
+  preamble {
+    id: 26286650
+    name: "MyEgress.int_sink"
+    alias: "int_sink"
+  }
+}
+registers {
+  preamble {
+    id: 381668116
+    name: "last_INT_timestamp"
+    alias: "last_INT_timestamp"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 48
+      }
+    }
+  }
+  size: 960
+}
+registers {
+  preamble {
+    id: 372583420
+    name: "tot_packets"
+    alias: "tot_packets"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 48
+      }
+    }
+  }
+  size: 960
+}
+type_info {
+}

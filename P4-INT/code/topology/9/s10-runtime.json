@@ -1,0 +1,66 @@
+{
+  "target": "bmv2",
+  "p4info": "build/INT.p4.p4info.txt",
+  "bmv2_json": "build/INT.json",
+  "table_entries": [
+    {
+      "table": "MyEgress.t_forward_int",
+      "default_action": true,
+      "action_name": "MyEgress.forward_int",
+      "action_params": {
+         "dstAddr": "08:00:00:00:04:00",
+         "ip_dstAddr" : "10.0.4.4"
+       }
+    },
+    {
+      "table": "MyEgress.int_trace",
+      "default_action": true,
+      "action_name": "MyEgress.add_int_trace",
+      "action_params": {
+         "swid": 10
+       }
+    },
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "default_action": true,
+      "action_name": "MyIngress.drop",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dstAddr": ["10.0.1.1", 32]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "08:00:00:00:01:00",
+        "port": 2,
+        "isEndHost": 0
+      }
+    },
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dstAddr": ["10.0.2.2", 32]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "08:00:00:00:02:22",
+        "port": 1,
+        "isEndHost": 0
+      }
+    },
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dstAddr": ["10.0.4.4", 32]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "08:00:00:00:04:00",
+        "port": 3,
+        "isEndHost": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+    "hosts": {
+        "h1": {"ip": "10.0.1.1/24", "mac": "08:00:00:00:01:11",
+               "commands":["route add default gw 10.0.1.10 dev eth0",
+                           "arp -i eth0 -s 10.0.1.10 08:00:00:00:01:00"]},
+        "h2": {"ip": "10.0.2.2/24", "mac": "08:00:00:00:02:22",
+               "commands":["route add default gw 10.0.2.20 dev eth0",
+                           "arp -i eth0 -s 10.0.2.20 08:00:00:00:02:00"]},
+        "h4": {"ip": "10.0.4.4/24", "mac": "08:00:00:00:04:44",
+              "commands":["route add default gw 10.0.4.40 dev eth0",
+                          "arp -i eth0 -s 10.0.4.40 08:00:00:00:04:00"]}
+    },
+    "switches": {
+        "s1": {
+            "cli_input" : "topology/6/s1-commands.txt",
+            "runtime_json" : "topology/6/s1-runtime.json"
+        },
+        "s2": {
+            "runtime_json" : "topology/6/s2-runtime.json"
+        },
+        "s3": {
+            "runtime_json" : "topology/6/s3-runtime.json"
+        },
+        "s4": {
+            "runtime_json" : "topology/6/s4-runtime.json"
+        },
+        "s5": {
+            "runtime_json" : "topology/6/s5-runtime.json"
+        },
+        "s6": {
+            "runtime_json" : "topology/6/s6-runtime.json"
+        },
+        "s7": {
+            "cli_input" : "topology/6/s7-commands.txt",
+            "runtime_json" : "topology/6/s7-runtime.json"
+        }
+    },
+    "links": [
+        ["h1", "s1-p1"],
+        ["s1-p2", "s2-p2", "0", 1000],
+        ["s2-p1", "s3-p2", "0", 1000],
+        ["s3-p1", "s5-p2", "0", 1000],
+        ["s5-p1", "s6-p2", "0", 1000],
+        ["s6-p1", "s7-p2", "0", 1000],
+        ["h2", "s7-p1"],
+        ["s1-p4", "s4-p2"], ["s7-p3", "s4-p3"],["h4", "s4-p1"]
+    ]
+}
