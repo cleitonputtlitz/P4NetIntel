@@ -11,3 +11,13 @@ To run P4NetIntel we need to:
 - Compile the P4 program and instantiate to the target (e.g. Mininet).
 - run the script eBPF_load.py to compile and attach the eBPF programs to the server
 
+```
+docs: project documentation
+dev_root:
+  ┣ P4-Int/code: P4 code for BMv2
+  ┣ P4-Int/code/eBPF_load.py: script to attach eBPF programs on BMv2
+  ┣ P4-Int/code/P4NetView.py: a set of example experiments
+  ┣ P4-Int/Utils: third party software
+  ┣ eBPF/Code: eBPF code for both BMv2 and the real hardware
+  ┣ microbenchmark: programs used to test performance on Hardware
+```
