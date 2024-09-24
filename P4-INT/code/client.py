@@ -51,8 +51,6 @@ def udp_request(client_address, server_address):
         print(f"udp_request {rpc_id} no response from server")
         latencia = 0
 
-    #print(f'udp_request {rpc_id} latencia {latencia}')
-
     request_socket.close()
 
     return (rpc_id, send_time, received_time, latencia)
@@ -66,9 +64,6 @@ def concurrent_request(request_rate, result):
     with ThreadPoolExecutor(workers) as executor:
         futures = [executor.submit(udp_request, client_address, server_address) for i in range(request_rate)]
 
-    # Agenda a próxima chamada após o intervalo
-    #Timer(1, concurrent_request, args=[request_rate, result]).start()
-
     results = [future.result() for future in futures]
 
     result.put(results)
@@ -78,17 +73,15 @@ def concurrent_request(request_rate, result):
     return 0
 
 def main():
-    # Configurações do cliente
-
+    
     #client_port = 4321
     #client_ip = '10.0.1.1'
     requests = [int(sys.argv[1])]
     #requests = [1000] #[400, 500, 600, 700, 800, 900, 1000, 1100, 1200]
     #request_rate  = 300
-    num_testes    = 1 #repeticoes
-    duration_time = 30 #segundos
+    num_testes    = 1
+    duration_time = 30
     results = []
-
 
     for request_rate in requests:
         average_request = 0
@@ -103,8 +96,6 @@ def main():
                 answer = concurrent_request(request_rate, result)
                 #sleep(1)
 
-            # Aguarda o término da execução
-            # time.sleep(duration_time)
 
             end_time = time.time()
 
@@ -132,7 +123,6 @@ def main():
             f.write(line)
             f.close()
 
-
             grv_results(f"logsExec/{request_rate}/send_ receive.csv",receive_pkt)
 
         results.append((request_rate, average_request / num_testes ))
@@ -142,7 +132,6 @@ def main():
         f.write(line)
         f.close()
 
-    print('Finalizando client.py')
     print(results)
 
     os._exit(0)

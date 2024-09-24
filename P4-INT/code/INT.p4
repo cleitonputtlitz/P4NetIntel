@@ -3,8 +3,6 @@
 #include <v1model.p4>
 #include "INT_headers.h"
 
-// INT Original
-
 /*************************************************************************
 *********************** P A R S E R  ***********************************
 *************************************************************************/
@@ -140,6 +138,7 @@ control MyIngress(inout headers hdr,
             last_INT_timestamp.read(meta.last_INT_timestamp, (bit<32>)meta.egress_port);
             tot_packets.read(meta.tot_packets, (bit<32>)meta.egress_port);
 
+            //check if INT data should be added
             if((T == 0 || standard_metadata.ingress_global_timestamp - meta.last_INT_timestamp >= T && T > 0) && hdr.rpc.isValid() && meta.q_traces < MAX_HOPS) {
                 meta.add_INT = 1;
                 last_INT_timestamp.write((bit<32>)meta.egress_port, standard_metadata.ingress_global_timestamp);

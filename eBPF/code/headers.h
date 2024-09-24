@@ -6,6 +6,8 @@
 #define TYPE_RPC 4629     //0x1215;
 #define MAX_HOPS 20
 #define SIZE_INT_HEADER 4
+#define TYPE_UDP 17
+#define TYPE_TCP 6
 
 #define bpf_custom_printk(fmt, ...)                     \
         ({                                              \
@@ -83,25 +85,6 @@ struct int_header {
                 __u64 int_field_3;
                 __u64 int_field_4;
                 __u64 int_field_5;
-                /*
-                __u8  ingress_port;
-                __u8  egress_port;
-                __u32 enq_timestamp;
-                __u8  enq_qdepth;
-                __u32 deq_timedelta;
-                __u8  deq_qdepth;
-                //__u32 ingress_timestamp;
-                //__u16 ingress_timestamp1;
-                //__u32 egress_timestamp;
-                //__u16 egress_timestamp1;
-                __u8  int_field_1;
-                __u32 int_field_2;
-                __u64 int_field_3;
-                __u64 int_field_4;
-                __u32 int_field_5;
-                __u16 int_field_51;
-                __u8  int_field_6;//328
-                */
                 __u16 next_proto;
             } __attribute__((packed));  //344 bits  43-Bytes
         #endif

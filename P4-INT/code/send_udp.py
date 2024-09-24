@@ -46,9 +46,6 @@ def main():
 
     tempo_total = int(sys.argv[3])
 
-    # Taxa de envio em pacotes por segundo
-    packets_per_second = int(sys.argv[2])
-
     payload_size = 100
 
     #s = conf.L2socket(iface=iface)
@@ -56,7 +53,7 @@ def main():
     try:
         vetor_pacotes = []
         i=0
-        print("Gerando os pacotes...")
+        
         while(i<1):
             i+=1
             rpc_id = get_rpc_id()

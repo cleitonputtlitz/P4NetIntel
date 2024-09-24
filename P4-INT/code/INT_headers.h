@@ -135,27 +135,23 @@ header int_header_t {
         //576 bits (72 Bytes)
       }
     #else
-      //#if COLLECT_SIZE == 4 //Otimizado discretizado
         header int_trace_t {
-          bit<8>  swid; //bit<32>  swid;
+          bit<8>  swid;
           bit<9>  ingress_port;
           bit<9>  egress_port;
           bit<32> enq_timestamp;
-          bit<2>  enq_qdepth; //bit<19> enq_qdepth;
+          bit<2>  enq_qdepth;
           bit<32> deq_timedelta;
-          bit<2>  deq_qdepth; //bit<19> deq_qdepth;
-          //bit<48> ingress_timestamp;
-          //bit<48> egress_timestamp;
-          bit<2> int_field_1;  //packet_length
-          bit<48> int_field_2;  //egress_timestamp-ingress_timestamp
+          bit<2>  deq_qdepth;
+          bit<2> int_field_1;
+          bit<48> int_field_2;
           bit<64> int_field_3;
           bit<64> int_field_4;
-          bit<48> int_field_5;  //last_INT_timestamp;
+          bit<48> int_field_5;
           bit<8>  int_field_6;
           bit<16>  next_proto;
-          //344 bits (43 Bytes) economia de 29 bytes
+          //344 bits (43 Bytes)
         }
-      //#endif
     #endif
   #endif
 #endif

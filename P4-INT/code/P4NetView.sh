@@ -1,5 +1,5 @@
 h2 xterm -e "python3 eBPF_load.py 1 4"
-sh echo “carregou os programas eBPF” &
+sh echo “Attaching the eBPF programs” &
 sh sleep 2
 
 h2 xterm -e "python3 server.py"&
@@ -724,7 +724,7 @@ sh echo “****************** INICIANDO TESTE 9 ***************************” &
 sh sleep 10
 h1 xterm -e 'python3 client.py 1200'
 
-sh echo “TESTES FINALIZADOS”
+sh echo “Tests finished”
 
-sh echo “Removendo os programas eBPF”
+sh echo “Removing eBPF programs”
 h2 xterm -e "python3 eBPF_load.py 2 0"

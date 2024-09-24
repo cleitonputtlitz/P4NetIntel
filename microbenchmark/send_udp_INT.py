@@ -45,11 +45,8 @@ def main():
     print("sending on interface %s to %s" % (iface, str(addr)))
 
     num_packets = int(sys.argv[3])
-    # Taxa de envio em pacotes por segundo
     packets_per_second = int(sys.argv[2])
-    # Calcula o intervalo de tempo entre os pacotes
     interval = 1.0 / packets_per_second
-
     payload_size = 1
 
     #3, 9, 18
@@ -74,13 +71,11 @@ def main():
         packets.append(pkt)
     pkt.show2()
 
-    print("pacotes gerados")
     for i in range(20):
-        #sleep(10)
         start_time = time.time()
         sendp(packets, inter=0.0025, loop=0, iface=iface, verbose=False)
         end_time = time.time()
-        print(f"envio {i} finalizado. Total time {end_time - start_time}")
+        print(f"Send {i}. Total time {end_time - start_time}")
 
 
 if __name__ == '__main__':

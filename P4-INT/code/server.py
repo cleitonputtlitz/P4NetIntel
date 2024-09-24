@@ -10,13 +10,11 @@ from scapy.all import *
 
 def handle_client(server_socket, data, client_address):
     server_socket.sendto(data, client_address)
-    #print(f"enviando mensagem para {client_address}")
 
 def main():
 
     host = '10.0.2.2'
     port = 1234
-    iface = 'eth0'
 
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     server_socket.bind((host, port))
@@ -25,8 +23,6 @@ def main():
     print(f"Server listening on {host}:{port}")
 
     pacotes_recebidos = 0
-    time_after = 0
-    time_before = time.time()
     try:
         start_time = time.time()
         while True:
@@ -41,10 +37,9 @@ def main():
 
     finally:
         end_time = time.time()
-        print(f'Total de pkts recebidos {pacotes_recebidos}, time: {(end_time-start_time)},  pps: {pacotes_recebidos/(end_time-start_time)}')
+        print(f'Total de packets received {pacotes_recebidos}, time: {(end_time-start_time)},  pps: {pacotes_recebidos/(end_time-start_time)}')
 
 
-    print('Finalizando server.py')
     os._exit(0)
 
 if __name__ == "__main__":

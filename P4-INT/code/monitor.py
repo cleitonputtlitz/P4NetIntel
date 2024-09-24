@@ -64,9 +64,7 @@ def main():
     # Thread para gerar os pacotes
     thread_gravar = threading.Thread(target=gravar_resultados, args=(file_name, receive_pkt,))
     thread_gravar.start()
-    print('gravar_pacotes iniciado')
-
-
+    
     pkt_recebidos = 0
     packet = ''
     try:
@@ -76,17 +74,10 @@ def main():
             pkt_recebidos += 1
             receive_pkt.put(data)
 
-            '''
-            print(client_address[0])
-            # Converte os dados para uma mensagem Scapy
-            packet = Ether(data)
-            packet.show2()
-            '''
     except Exception as e:
-        print(f"Ocorreu uma exceção: {e}")
+        print(f"Exception: {e}")
     finally:
-        print(f'total de pkts recebidos pelo monitor: {pkt_recebidos}')
-
+        
         f = open("logsExec/log.txt", "a")
         line = f"MONITOR: recv {pkt_recebidos}\n"
         f.write(line)
@@ -95,7 +86,6 @@ def main():
         thread_gravar.join()
         #gravar_resultados(f"logsExec/{300}/pkt_size.csv",receive_pkt)
 
-    print('Finalizando monitor.py')
     os._exit(0)
 
 
