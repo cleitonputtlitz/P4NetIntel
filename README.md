@@ -9,7 +9,7 @@ P4NetIntel is a system that tracks the entire life cycle of a flow using end-to-
 The P4NetIntel must be run using the tutorial P4 VM. To run it, follow the following steps:
 
 
-1. Compile the P4 code `INT.p4` and start mininet:
+1. Compile the P4 code `INT.p4` and start Mininet:
 ```bash
 cd P4-INT/code
 make
