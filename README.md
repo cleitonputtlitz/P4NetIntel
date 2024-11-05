@@ -6,10 +6,50 @@ P4NetIntel is a system that tracks the entire life cycle of a flow using end-to-
 
 ## Getting started: 
 
-To run P4NetIntel we need to: 
+The P4NetIntel must be run using the tutorial P4 VM. To run it, follow the following steps:
 
-- Compile the P4 program and instantiate to the target (e.g. Mininet).
-- run the script eBPF_load.py to compile and attach the eBPF programs to the server
+
+1. Compile the P4 code `INT.p4` and start mininet:
+```bash
+cd P4-INT/code
+make
+```
+
+2. Open two terminals for h1 and h2:
+```bash
+mininet> xterm h1 h2
+```
+
+3. In h2's XTerm, compile and attach the eBPF programs:
+```bash
+python3 eBPF_load.py 1 4
+```
+
+4. In h2's XTerm, start the server:
+```bash
+python3 server.py
+```
+
+5. In h1's XTerm, send 400 packets per second to `h2` using client.py:
+```bash
+python3 client.py 400
+```
+
+6. To see the collected data, start a new terminal for `h4` and run the monitor.py:
+```bash
+mininet> xterm h4
+python3 monitor.py
+```
+
+7. To automate the steps 2-5, you can run:
+```bash
+mininet> source P4NetView.sh
+```
+
+8. To detach the eBPF programs, run in h2's XTerm:
+```bash
+python3 eBPF_load.py 2 0
+```
 
 
 ## Repo Organization
