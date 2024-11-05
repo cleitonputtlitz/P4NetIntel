@@ -22,7 +22,7 @@ mininet> xterm h1 h2
 
 3. In h2's XTerm, compile and attach the eBPF programs:
 ```bash
-python3 eBPF_load.py 1 4
+python3 eBPF_load.py 1 3
 ```
 
 4. In h2's XTerm, start the server:
