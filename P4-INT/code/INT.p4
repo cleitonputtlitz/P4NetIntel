@@ -145,7 +145,7 @@ control MyIngress(inout headers hdr,
                 tot_packets.write((bit<32>)meta.egress_port, 0);
             } else {
                 meta.add_INT = 0;
-                last_INT_timestamp.write((bit<32>)meta.egress_port, standard_metadata.ingress_global_timestamp);  //TODO
+                last_INT_timestamp.write((bit<32>)meta.egress_port, standard_metadata.ingress_global_timestamp);
             }
 
             if( (hdr.int_header.isValid() || meta.add_INT == 1) && meta.isEndHost == 1) {

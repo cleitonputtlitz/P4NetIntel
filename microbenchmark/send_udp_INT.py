@@ -36,7 +36,7 @@ def get_rpc_id():
 def main():
 
     if len(sys.argv)<4:
-        print('pass 3 arguments: <destination> <packets per second> <number message>')
+        print('pass 3 arguments: <destination> <packets per second> <number messages>')
         exit(1)
 
     addr = socket.gethostbyname(sys.argv[1])
