@@ -15,7 +15,7 @@ cd P4-INT/code
 make
 ```
 
-2. Open two terminals for h1 and h2:
+2. Open two terminals for `h1` and `h2`:
 ```bash
 mininet> xterm h1 h2
 ```
