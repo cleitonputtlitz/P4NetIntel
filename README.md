@@ -52,6 +52,34 @@ python3 eBPF_load.py --load 2
 ```
 
 
+## Microbenchmark
+
+eBPF programs can be run in a hardware test environment that allows us to load P4NetIntel XDP modules into the network card driver.
+
+1. Compile the eBPF code:
+```bash
+clang -D COLLECT_SIZE=3 -target bpf -O2 -c xdp.c -o xdp.o
+clang -D COLLECT_SIZE=3 -target bpf -O2 -c tc.c -o tc.o
+```
+
+2. Attach XDP and TC programs:
+```bash
+sudo ip -force link set dev [INTERFACE] xdp obj xdp.o sec xdp
+sudo tc qdisc add dev [INTERFACE] clsact
+sudo tc filter add dev [INTERFACE] egress bpf da obj tc.o sec tc
+```
+
+3. Run the server.py:
+```bash
+python3 server.py
+```
+
+4. Run the send_udp_INT.py:
+```bash
+python3 send_udp_INT.py  <interface>  <destination> <packets per second> <number messages>
+```
+
+
 ## Repo Organization
 ```
   ┣ P4-Int/code: P4 code for BMv2
