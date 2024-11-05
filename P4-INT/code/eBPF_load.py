@@ -1,5 +1,12 @@
 import sys
 import subprocess
+import argparse
+
+def get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--load", type=int, required=True)
+    parser.add_argument("--size", type=int, default=3)
+    return parser.parse_args()
 
 def load_programs(param2):
     print('load_programs')
@@ -48,11 +55,10 @@ def remove_programs():
 
 def main():
 
-    param1 = int(sys.argv[1])
-    param2 = int(sys.argv[2])
-    
-    if param1 == 1:
-        load_programs(param2)
+    args = get_args()
+
+    if args.load == 1:
+        load_programs(args.size)
     else:
         remove_programs()
 
